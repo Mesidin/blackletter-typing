@@ -1,0 +1,8 @@
+/blackletter
+/cybertype
+/cybertype.exe
+/dist/
+*.exe
+*.test
+*.out
+.DS_Store
