@@ -27,7 +27,8 @@ Module path is `blackletter`. Binary name is `blackletter`. Data dir is `~/.blac
 | `app/corpus.go` | Passages (`kind: sentence` vs literature) |
 | `app/boss.go` / `boss_art.go` | Decade bosses, braille portraits, fight rules |
 | `app/theme.go` / `styles.go` | Omarchy `colors.toml` or ink-and-gold fallback |
-| `app/fraktur.go` | Unicode blackletter titles |
+| `app/banner.go` | 6-line block-letter banners (box-drawing, not a font) |
+| `app/fraktur.go` | Tiny Unicode fraktur (do not use for titles — unreadable) |
 | `app/cheat.go` | Konami prompt to skip to a level (dev/testing) |
 | `assets/texts/` | Public-domain JSON excerpts |
 | `scripts/dist.sh` | Cross-compile Mac Intel, Mac Apple, Linux |
@@ -53,7 +54,7 @@ Module path is `blackletter`. Binary name is `blackletter`. Data dir is `~/.blac
 
 ## Theme
 
-Resolution: `NO_COLOR` → `BLACKLETTER_THEME` → Omarchy current `colors.toml` → ink-and-gold fallback. Near-black `muted` is lifted for Mac terminals. Titles use Mathematical Bold Fraktur; if a font tofu’s those glyphs, the ASCII `Title` string still shows.
+Resolution: `NO_COLOR` → `BLACKLETTER_THEME` → Omarchy current `colors.toml` → ink-and-gold fallback. Near-black `muted` is lifted for Mac terminals. Titles use 6-line ANSI Shadow block letters (`BigBanner` in `banner.go`) — drawn with `█╗╔`, not a font and not an image. Do not switch titles to Unicode Fraktur; it is too small to read.
 
 ## Cheat (keep out of the player README)
 
@@ -61,7 +62,7 @@ On menus, not during a lesson: `↑ ↑ ↓ ↓ ← → ← → b a` opens a lev
 
 ## Layout gotchas
 
-Boss fights: portrait goes **right** of the name/HP/timer when the window is wide enough; typing line stays underneath. Figlet-style 6-line banners were too tall — do not bring them back. Braille width depends on the font; measure with `lipgloss.Width`.
+Boss fights: huge name banner across the top; portrait to the **right** of HP/timer; typing line underneath. Clip the portrait if the window is short. Braille width depends on the font; measure with `lipgloss.Width`.
 
 ## Tests
 

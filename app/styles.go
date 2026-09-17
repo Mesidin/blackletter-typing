@@ -126,9 +126,13 @@ func colorlessStyles(p Palette) Styles {
 	return s
 }
 
-// Wordmark is the ASCII title, already styled.
+// Wordmark is a one-line title. Huge 6-line banners are for boss names only.
 func (s Styles) Wordmark() string {
-	return s.Title.Render(appWordmark())
+	return s.Title.Render("✠  BLACKLETTER  ✠")
+}
+
+func (s Styles) CompactWordmark() string {
+	return s.Wordmark()
 }
 
 func (s Styles) frame(width int, body string) string {

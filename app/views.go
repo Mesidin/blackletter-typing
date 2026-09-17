@@ -212,8 +212,8 @@ func (m Model) viewBossFight() string {
 		m.styles.Label.Render(fmt.Sprintf("need  %.0f WPM  ·  %.0f%%", f.Spec.MinWPM, f.Spec.MinAccuracy*100)),
 		m.styles.Value.Render(fmt.Sprintf("time %s\nWPM %s    acc %s%s", clock, wpm, acc, combo)),
 	)
-	// Leave room under the portrait for the passage.
-	maxArt := m.height - 12
+	// Banner is 6 rows; leave room under the portrait for the passage.
+	maxArt := m.height - 18
 	if maxArt < 8 {
 		maxArt = 8
 	}
@@ -233,9 +233,10 @@ func (m Model) viewBossFight() string {
 	return b.String()
 }
 
-// bossHeader puts the name (and stats) on the left and the portrait on the right
-// when the window is wide enough; otherwise it uses a compact stacked title.
+// bossHeader draws the huge name across the top, then stats on the left
+// and the portrait on the right.
 func (m Model) bossHeader(spec BossSpec, leftExtra string, width, maxArtH int, muted bool) string {
+	title := m.bossNameBlock(spec, width)
 	art := strings.Trim(spec.Art, "\n")
 	art = clipLines(art, maxArtH)
 	artStyle := m.styles.Accent
@@ -247,13 +248,11 @@ func (m Model) bossHeader(spec BossSpec, leftExtra string, width, maxArtH int, m
 	minLeft := 22
 	if art != "" && width >= artW+minLeft+gap {
 		leftW := width - artW - gap
-		title := m.bossNameBlock(spec, leftW)
-		left := joinBlocks(title, leftExtra)
-		leftCol := lipgloss.NewStyle().Width(leftW).MaxWidth(leftW).MarginRight(gap).Render(left)
+		leftCol := lipgloss.NewStyle().Width(leftW).MaxWidth(leftW).MarginRight(gap).Render(leftExtra)
 		right := artStyle.Render(art)
-		return lipgloss.JoinHorizontal(lipgloss.Top, leftCol, right)
+		return joinBlocks(title, lipgloss.JoinHorizontal(lipgloss.Top, leftCol, right))
 	}
-	return joinBlocks(m.bossNameBlock(spec, width), leftExtra)
+	return joinBlocks(title, leftExtra)
 }
 
 func (m Model) bossNameBlock(spec BossSpec, width int) string {

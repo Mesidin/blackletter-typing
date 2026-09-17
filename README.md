@@ -52,7 +52,7 @@ Cap is level 100.
 | `backspace` | Fix a letter |
 | `ctrl+c` | Quit |
 
-Font size is the terminal’s (`Cmd++` / `Cmd+-` on a Mac). For the gothic titles to look like blackletter, use a font that includes Mathematical Bold Fraktur (Menlo on macOS usually falls back to one; many Nerd Fonts on Omarchy do too).
+Font size is the terminal’s (`Cmd++` / `Cmd+-` on a Mac). The giant titles are drawn with box-drawing characters, not a special font.
 
 ## Install on another machine
 

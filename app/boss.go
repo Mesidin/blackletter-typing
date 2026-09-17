@@ -81,8 +81,35 @@ func bossAt(level int) BossSpec {
 		base.Name, base.Title, base.Source, base.Art = "Leviathan", "Leviathan", "Job 41 & sailor lore", artLeviathan
 		base.Level = 100
 	}
-	base.Banner = FrakturBanner(base.Title)
+	base.Banner = BigBanner(bannerWord(base.Title, base.Name))
 	return base
+}
+
+func bannerWord(title, name string) string {
+	switch {
+	case strings.Contains(strings.ToLower(title), "wolf"):
+		return "WOLFMAN"
+	case strings.Contains(strings.ToLower(title), "hyde"):
+		return "HYDE"
+	case strings.Contains(strings.ToLower(title), "franken"):
+		return "MONSTER"
+	case strings.Contains(strings.ToLower(title), "dracula"):
+		return "DRACULA"
+	case strings.Contains(strings.ToLower(title), "whale"):
+		return "WHALE"
+	case strings.Contains(strings.ToLower(name), "grendel"):
+		return "GRENDEL"
+	case strings.Contains(strings.ToLower(title), "raven"):
+		return "RAVEN"
+	case strings.Contains(strings.ToLower(title), "horseman"):
+		return "HORSEMAN"
+	case strings.Contains(strings.ToLower(title), "kraken"):
+		return "KRAKEN"
+	case strings.Contains(strings.ToLower(title), "leviathan"):
+		return "LEVIATHAN"
+	default:
+		return strings.ToUpper(name)
+	}
 }
 
 // NewBossFight sets HP from the review text length.

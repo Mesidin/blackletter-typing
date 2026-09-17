@@ -28,7 +28,3 @@ func FrakturBanner(s string) string {
 	}
 	return "✠  " + Fraktur(s) + "  ✠"
 }
-
-func appWordmark() string {
-	return "✠  " + Fraktur("Blackletter") + "  ✠"
-}
