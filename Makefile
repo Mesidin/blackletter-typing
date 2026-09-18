@@ -1,4 +1,4 @@
-.PHONY: run test dist fmt
+.PHONY: run test dist app install-desktop fmt
 
 run:
 	go run .
@@ -11,3 +11,9 @@ fmt:
 
 dist:
 	./scripts/dist.sh
+
+app:
+	./scripts/macos-app.sh
+
+install-desktop:
+	./scripts/install-desktop.sh

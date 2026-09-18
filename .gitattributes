@@ -1,0 +1,4 @@
+# Ensure shell scripts, Makefiles, and desktop launchers retain LF line endings on Windows
+*.sh text eol=lf
+Makefile text eol=lf
+*.desktop text eol=lf

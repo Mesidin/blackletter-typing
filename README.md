@@ -68,7 +68,7 @@ make dist
 | `dist/blackletter-mac-intel` | Intel Mac |
 | `dist/blackletter-linux` | Omarchy / most Linux PCs |
 
-**Mac**
+**Mac (Command Line & Dock)**
 
 ```bash
 chmod +x blackletter-mac-apple
@@ -76,22 +76,30 @@ xattr -d com.apple.quarantine blackletter-mac-apple   # if macOS blocks it
 ./blackletter-mac-apple
 ```
 
-To install as a command:
+To install as a macOS `.app` bundle for your Dock (matching `chess-with-go` & `go-with-go`):
 
 ```bash
-mkdir -p ~/bin
-mv blackletter-mac-apple ~/bin/blackletter
+make app    # or: sh scripts/macos-app.sh
+cp -R "Blackletter.app" /Applications/
 ```
 
-Add `export PATH="$HOME/bin:$PATH"` to `~/.zshrc` if needed.
+Then open `/Applications` in Finder and drag `Blackletter` onto your Mac Dock.
 
-**Omarchy / Linux**
+**Omarchy / Linux (CLI & Apps Menu)**
 
 ```bash
 chmod +x blackletter-linux
 sudo mv blackletter-linux /usr/local/bin/blackletter
 blackletter
 ```
+
+To add Blackletter to your **Omarchy / Linux main apps menu**:
+
+```bash
+make install-desktop    # or: sh scripts/install-desktop.sh
+```
+
+This installs the binary to `~/.local/bin/blackletter` and creates `~/.local/share/applications/blackletter.desktop` with `Terminal=true` so it automatically launches in a terminal when selected from Omarchy's application launcher.
 
 On Omarchy it reads the current theme from `colors.toml`. USB, AirDrop, `scp`, or a shared folder all work.
 

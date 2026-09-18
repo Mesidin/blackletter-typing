@@ -8,6 +8,8 @@ Gothic TUI typing tutor for kids. Go + Bubble Tea + Lip Gloss. Local only.
 go test ./...          # or: make test
 go run .               # or: make run
 ./scripts/dist.sh      # or: make dist
+./scripts/macos-app.sh # or: make app (builds macOS Blackletter.app bundle for Dock)
+./scripts/install-desktop.sh # or: make install-desktop (installs .desktop entry for Omarchy apps menu)
 gofmt -w .
 ```
 

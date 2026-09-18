@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Blackletter Typing
+Comment=Gothic TUI typing tutor for kids
+Exec=blackletter
+Icon=utilities-terminal
+Terminal=true
+Categories=Game;Education;
