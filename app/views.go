@@ -40,7 +40,7 @@ func (m Model) View() string {
 	default:
 		body = "…"
 	}
-	head := m.styles.Wordmark()
+	head := m.styles.Wordmark(m.width)
 	if m.screen == screenTyping || (m.screen == screenSummary && m.boss != nil) {
 		head = ""
 	}

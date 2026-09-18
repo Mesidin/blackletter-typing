@@ -126,13 +126,22 @@ func colorlessStyles(p Palette) Styles {
 	return s
 }
 
-// Wordmark is a one-line title. Huge 6-line banners are for boss names only.
-func (s Styles) Wordmark() string {
-	return s.Title.Render("✠  BLACKLETTER  ✠")
+// Wordmark renders the 6-line block letter logo ("BLACKLETTER") like the boss titles.
+// If a width is provided and the banner is too wide for the window, it falls back to a compact one-line title.
+func (s Styles) Wordmark(width ...int) string {
+	banner := BigBanner("BLACKLETTER")
+	w := 0
+	if len(width) > 0 {
+		w = width[0]
+	}
+	if w > 0 && !bannerFits(banner, w-4) {
+		return s.CompactWordmark()
+	}
+	return s.Title.Render(banner)
 }
 
 func (s Styles) CompactWordmark() string {
-	return s.Wordmark()
+	return s.Title.Render("✠  BLACKLETTER  ✠")
 }
 
 func (s Styles) frame(width int, body string) string {

@@ -14,6 +14,13 @@ APP="${NAME}.app"
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
+# Copy AppIcon.icns if present in assets/
+if [ -f "assets/AppIcon.icns" ]; then
+    cp "assets/AppIcon.icns" "$APP/Contents/Resources/AppIcon.icns"
+elif [ -f "assets/icon.icns" ]; then
+    cp "assets/icon.icns" "$APP/Contents/Resources/AppIcon.icns"
+fi
+
 # Build Universal binary (Apple Silicon + Intel) if lipo is available
 if command -v lipo >/dev/null 2>&1; then
     echo "Building universal binary (Intel + Apple Silicon)..."
@@ -40,6 +47,8 @@ cat > "$APP/Contents/Info.plist" <<EOF
 <dict>
   <key>CFBundleExecutable</key>
   <string>launcher</string>
+  <key>CFBundleIconFile</key>
+  <string>AppIcon</string>
   <key>CFBundleIdentifier</key>
   <string>$IDENT</string>
   <key>CFBundleName</key>
